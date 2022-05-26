@@ -5,10 +5,14 @@
 </head>
 <body>
 <h1>Add user</h1>
-<form action="#" method="POST" th:action="@{/new}" th:object="${user}">
-    <label for="name">Name: </label>
-    <input type="text" th:field="*{name}" id="name" required/>
+<form action="#" method="POST" th:action="@{/admin/new}" th:object="${user}">
+    <label for="username">Name: </label>
+    <input type="text" th:field="*{username}" id="username" required/>
+
     <br/>
+    <label for="password">Password</label>
+    <input type="text" th:field="*{password}" id="password"/>
+    <br>
 
     <label for="surname">Surname: </label>
     <input type="text" th:field="*{surname}" id="surname" required/>
@@ -18,7 +22,16 @@
     <input type="number" th:field="*{phoneNumber}" id="phoneNumber" required/>
     <br/>
 
+    <label for="role">Role: </label>
+    <input type="text" th:field="*{roles}" id="role" required/>
+    <br/>
+
     <input type="submit" class="buttonAdd" value="Add"/>
+
+
+</form>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
 </form>
 </body>
 </html>

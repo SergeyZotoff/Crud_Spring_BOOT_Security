@@ -1,16 +1,52 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <meta charset="UTF-8">
-    <title>User page</title>
+    <title>Spring Security Example</title>
 </head>
 <body>
-<h1>User</h1>
-<p th:text="'Id: ' + ${user.getId()}">ID</p>
-<p th:text="'Name : ' + ${user.getName()}">NAME</p>
-<p th:text="'Surname : ' + ${user.getSurname()}">SURNAME</p>
-<p th:text="'PhoneNumber : ' + ${user.getPhoneNumber()}">PHONE NUMBER</p>
-<br>
-<button onclick="window.location.href = '..';">Back</button>
+<h1>Welcome to your page!</h1>
+<div align="left">
+    <a href="/logout">Logout</a>
+</div>
+<table border="1">
+    <caption>List of users</caption>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Surname</th>
+        <th>PhoneNumber</th>
+        <th>Role</th>
+        <th sec:authorize="hasRole('ADMIN')">Edit</th>
+        <th sec:authorize="hasRole('ADMIN')">Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <th:block>
+        <tr th:each="u:${Users}">
+            <th th:text="${u.getId()}">
+            </th>
+            <th th:text="${u.getUsername()}">
+            </th>
+            <th th:text="${u.getSurname()}">
+            </th>
+            <th th:text="${u.getPhoneNumber()}">
+            </th>
+            <th th:text="${u.getRoles()}">
+            </th>
+            <th sec:authorize="hasRole('ADMIN')">
+                <a th:href="@{/admin/edit/{id}(id=${u.getId()})}" class="btn btn-danger">Edit</a>
+            </th>
+            <th sec:authorize="hasRole('ADMIN')">
+                <a th:href="@{/admin/delete/{id}(id=${u.getId()})}" class="btn btn-danger">Delete</a>
+            </th>
+        </tr>
+    </th:block>
+    </tbody>
+</table>
+<a sec:authorize="hasRole('ADMIN')" th:href="@{/admin/new}" class="btn btn-danger">Add</a>
+
+
 </body>
 </html>
