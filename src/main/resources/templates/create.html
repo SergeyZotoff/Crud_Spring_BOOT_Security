@@ -22,8 +22,10 @@
     <input type="number" th:field="*{phoneNumber}" id="phoneNumber" required/>
     <br/>
 
-    <label for="role">Role: </label>
-    <input type="text" th:field="*{roles}" id="role" required/>
+    <select name="roles">
+        <option selected value="USER">USER</option>
+        <option selected value="ADMIN">ADMIN</option>
+    </select>
     <br/>
 
     <input type="submit" class="buttonAdd" value="Add"/>

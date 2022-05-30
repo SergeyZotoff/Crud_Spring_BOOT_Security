@@ -20,8 +20,10 @@
     <br>
     <label for="phoneNumber">PhoneNumber</label>
     <input type="text" th:field="*{phoneNumber}" id="phoneNumber"/>
-    <label for="role">Role</label>
-    <input type="text" th:field="*{roles}" id="role"/>
+    <select name="roles">
+        <option selected value="USER">USER</option>
+        <option selected value="ADMIN">ADMIN</option>
+    </select>
     <br>
     <input type="submit" value="Edit!"/>
 
