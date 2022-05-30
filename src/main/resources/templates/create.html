@@ -22,9 +22,9 @@
     <input type="number" th:field="*{phoneNumber}" id="phoneNumber" required/>
     <br/>
 
-    <select name="roles">
-        <option selected value="USER">USER</option>
-        <option selected value="ADMIN">ADMIN</option>
+    <select size="2" multiple="multiple" name="roles" id="roles">
+        <option th:align="center" value="ADMIN">ADMIN</option>
+        <option th:align="center" selected value="USER">USER</option>
     </select>
     <br/>
 
